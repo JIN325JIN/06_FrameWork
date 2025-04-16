@@ -6,6 +6,8 @@
   <title>thymeleaf</title>
 </head>
 <body>
+  <!--templates폴더 기준-->
+  <th:block th:replace="~{fragments/header}"></th:block>
   <h1>thymeleaf</h1>
   <h3>1. 템플릿 엔진</h3>
  <pre>
@@ -24,6 +26,9 @@
    컨트롤러로 부터 전달 받은 데이터를 이용해 동적 페이지를 만들 수 있음.
    Spring Boot에서는 JSP가 아닌 Thymeleaf 사용을 권장하고 있음.
  </pre>
+
+
+ <th:block th:replace="~{fragments/footer::footer2}"></th:block>
  <ol>
    <li>
      <a href="/example/ex1">타임리프 예제1</a>
@@ -45,6 +50,9 @@
      
 <button>제출하기</button>
      </form>
+
+
+
    </li>
    <li>
      <a href="/example/ex3">타임리프 예제3</a>
@@ -55,11 +63,12 @@
    <li>
      <a href="/example/ex5">타임리프 예제5</a>
    </li>
+
 	
  </ol>
 
 
 
-
+ <th:block th:replace="~{fragments/footer::footer1}"></th:block>
 </body>
 </html>
