@@ -74,8 +74,6 @@
 	
 	->${key}가 MEMBER_ADDRESS 인 경우
 	->SELECT MEMBER_NAME,MEMBER_ADDRESS FROM "MEMBER"
-	
-	
 	-->
 	
 	
@@ -89,5 +87,32 @@
 	WHERE TODO_NO = ${todoNo}
 	</select>
 	
+	<!-- 완료 여부 변경 -->
+	<update id="changeComplete" parameterType="Todo">
+	UPDATE TB_TODO SET 
+	COMPLETE =#{complete}
+	WHERE TODO_NO = #{todoNo}
+	</update>
+	
+	
+	<!-- 할일 수정 -->
+	<update id="todoUpdate" parameterType="Todo">
+	UPDATE TB_TODO SET
+	TODO_TITLE = #{todoTitle},
+	TODO_CONTENT = #{todoContent}
+	WHERE TODO_NO = #{todoNo}
+	</update>
+	
+	<!-- 할일 삭제 -->
+	<delete id="todoDelete" parameterType="Todo">
+	DELETE FROM TB_TODO
+	WHERE TODO_NO = #{todoNo}
+	</delete>
+	
+	
+	<!-- 전체 할 일 개수 조회 -->
+	<select id = "getTotalCount" resultType ="_int">
+	SELECT COUNT(*) FROM TB_TODO
+	</select>
 
 </mapper>

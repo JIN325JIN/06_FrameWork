@@ -8,6 +8,9 @@
 </head>
 <body>
   <h1>Todo List</h1>
+
+  <hr>
+  <h3><a href="/ajax/main">TodoList - Ajax 버전 페이지로...</a></h3>
   <p th:text="${testTitle}">todoNo가 1인 할일 제목 조회</p>
   
 
@@ -17,9 +20,7 @@
       제목 : <input type="text" name="todoTitle">
     </div>
     <div>
-      <textarea cols="50" rows="5" name="todoContent" placeholder="상세내용">
-
-      </textarea>
+      <textarea cols="50" rows="5" name="todoContent" placeholder="상세내용"></textarea>
     </div>
 
     <button>추가하기</button>
