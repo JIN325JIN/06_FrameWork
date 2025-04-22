@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.project.email.model.mapper.EmailMapper">
+ <!-- namespace: 연결할 DAO(== Mapper 인터페이스)의 경로를 작성(필수로 작성!!!) 
+ 				패키지 경로를 포함한 전체의 이름으로 작성-->
+ 
+ 
+ 
+ 
+ <!-- 전달 받은 파라미터가 
+ Map->key 접근 
+ DTO-> 필드명 접근 -->
+ 
+ 
+ <!-- 인증 번호 수정 -->
+ <update id = "updateAuthKey">
+ UPDATE "TB_AUTH_KEY" SET
+ AUTH_KEY = #{authKey},
+ CREATE_TIME =SYSDATE
+ WHERE EMAIL =#{email}
+ </update>
+ 
+ 
+ <!-- 인증번호 삽입 -->
+ <insert id="insertAuthKey">
+ INSERT INTO "TB_AUTH_KEY"
+ VALUES(SEQ_KEY_NO.NEXTVAL,#{email},#{authKey},DEFAULT)
+ </insert>
+ 
+
+</mapper>
