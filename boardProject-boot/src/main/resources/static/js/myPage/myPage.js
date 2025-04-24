@@ -25,24 +25,13 @@ function execDaumPostcode() {
     }).open();
   }
   
-  //주소 검색 버튼 클릭 시 
-  document.querySelector("#searchAddress").addEventListener("click",execDaumPostcode);
+  //주소 검색 버튼 클릭 시 (myPage-info.html 외에도 문제가 발생하지 않도록 작성)
+  const searchAddress = document.querySelector("#searchAddress");
+  if(searchAddress!=null){ //화면상에 id가 searchAddress 인 요소가 존재하는 경우에만
+    searchAddress.addEventListener("click",execDaumPostcode);
+  }
+ 
   
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
 
 /* 회원 정보 수정 페이지 */
 const updateInfo = document.querySelector("#updateInfo"); // form 태그
@@ -55,8 +44,6 @@ if(updateInfo != null) {
 
         // 가장 먼저 기본 이벤트 동작 중단
          e.preventDefault();
-
-
 
         const memberNickname = document.querySelector("#memberNickname");
         const memberTel = document.querySelector("#memberTel");
@@ -98,7 +85,6 @@ if(updateInfo != null) {
                // e.preventDefault();
                 return;
         }
-
 
         // 전화번호 유효성 검사
         if(memberTel.value.trim().length === 0) {
@@ -156,6 +142,8 @@ if(updateInfo != null) {
 // 비밀번호 변경 form 태그
 const changePw = document.querySelector("#changePw");
 
+//현재 페이지에서 changePw 요소가 존재할때 
+//전역에서 사용하니까 마이페이지 하지만 changePw는 여기서만 사용
 if(changePw != null) {
     // 제출 되었을 때
     changePw.addEventListener("submit", e => {
