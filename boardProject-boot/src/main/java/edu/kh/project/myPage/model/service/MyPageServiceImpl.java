@@ -195,4 +195,42 @@ public class MyPageServiceImpl implements MyPageService{
 		return mapper.fileList(memberNo);
 	}
 
+	//여러파일 업로드 서비스 
+	@Override
+	public int fileUpload3(List<MultipartFile> aaaList, List<MultipartFile> bbbList, int memberNo) throws Exception {
+		
+		
+		//1. aaaList 처리
+		int result1 =0;//결과(INSERT 된 행의 갯수)를 저장할 변수
+		
+		//업로드된 파일이 없을 경우를 제외하고 업로드
+		
+		for( MultipartFile file : aaaList) {
+			if(file.isEmpty()) { //파일이 없으면 다음 파일 
+				continue;
+			}
+			
+			//DB에 저장 + 서버에 실제로 저장 : fileupload2가 해주는 일
+			//위에서 만든 fileUpload2를 호출해서 사용(재활용)
+			result1 += fileUpload2(file,memberNo);//누적으로 해야함!!
+		}
+		
+		//2. bbbList 처리
+		int result2 =0;//결과(INSERT 된 행의 갯수)를 저장할 변수
+		
+		//업로드된 파일이 없을 경우를 제외하고 업로드
+		
+		for( MultipartFile file : bbbList) {
+			if(file.isEmpty()) { //파일이 없으면 다음 파일 
+				continue;
+			}
+			
+			//DB에 저장 + 서버에 실제로 저장 : fileupload2가 해주는 일
+			//위에서 만든 fileUpload2를 호출해서 사용(재활용)
+			result2 += fileUpload2(file,memberNo);//누적으로 해야함!!
+		}
+		
+		return result1+result2;
+	}
+
 }

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.dto.UploadFile;
 import edu.kh.project.myPage.model.service.MyPageService;
+import lombok.extern.slf4j.Slf4j;
 
 
 /*
@@ -37,6 +38,7 @@ import edu.kh.project.myPage.model.service.MyPageService;
 @SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
+@Slf4j
 public class MypageController {
 
 	@Autowired
@@ -303,7 +305,7 @@ public class MypageController {
 		 * @return 
 		 */
 		@GetMapping("fileList")
-		public String fileList(Model model,@SessionAttribute("loginMember")Member loginMember) {
+		public String fileList(Model model,@SessionAttribute("loginMember")Member loginMember)throws Exception {
 			
 			
 			//파일 목록 조회하는 서비스 호출 ( 현재 로그인한 회원이 올린 이미지만 조회)
@@ -315,5 +317,48 @@ public class MypageController {
 			model.addAttribute("list",list);
 			
 			return "myPage/myPage-fileList";
+		}
+		
+		
+		
+		@PostMapping("file/test3")// /myPage/file/test3
+		public String fileUpload3(@RequestParam("aaa")List<MultipartFile>aaaList,
+				@RequestParam("bbb")List<MultipartFile>bbbList,
+				@SessionAttribute("loginMember")Member loginMember,
+				RedirectAttributes ra) throws Exception{
+			
+			
+			log.debug("aaaList:"+aaaList);
+			log.debug("bbbList:"+bbbList);
+			
+			
+			//aaa파일 미제출시
+			//-> 0번과 1번 인덱스가 존재하는 List가 있다.
+			//-> 0번과 1번 인덱스에는 MultiFile객체가 존재하나 둘다 비어있는 객체인 상태
+			//-> 0번,1번 인덱스가 존재하는 이유는 html에서 제출된 파라미터 중 name값이 aaa인 2개
+		
+			
+			//bbb파일 미제출시
+			//-> 0번 인덱스에 있는 MultipartFile객체가 비어있는 상태
+			
+
+			
+			//여러파일 업로드 서비스 호출 
+			int memberNo = loginMember.getMemberNo();
+			int result = service.fileUpload3(aaaList,bbbList,memberNo);
+			//result == 업로드된 파일의 개수
+			
+			//ex) aaa에 2개 , bbb에 3개면  총 5개
+			String message = null;
+			if(result==0) {
+				message ="업로드된 파일이 없습니다.";
+			}else {
+				message= result +"개의 파일이 업로드 되었습니다!";
+			}
+			
+			ra.addFlashAttribute("message",message);
+			
+			return "redirect:/myPage/fileTest";
+			
 		}
 }

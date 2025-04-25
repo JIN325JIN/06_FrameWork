@@ -240,8 +240,16 @@ if(secession != null) {
 
 // 요소 참조
 const profileForm = document.getElementById("profile");  // 프로필 form
-const profileImg = document.getElementById("profileImg");  // 미리보기 이미지 img
-const imageInput = document.getElementById("imageInput");  // 이미지 파일 선택 input
-const deleteImage = document.getElementById("deleteImage");  // 이미지 삭제 버튼
-const MAX_SIZE = 1024 * 1024 * 5;  // 최대 파일 크기 설정 (5MB)
 
+if(profileForm!=null){
+
+    const profileImg = document.getElementById("profileImg");  // 미리보기 이미지 img
+    const imageInput = document.getElementById("imageInput");  // 이미지 파일 선택 input
+    const deleteImage = document.getElementById("deleteImage");  // 이미지 삭제 버튼
+    const MAX_SIZE = 1024 * 1024 * 5;  // 최대 파일 크기 설정 (5MB)
+
+
+    const defaultImageUrl = `${window.location.origin}/images/user.png`;
+    //윈도우가 자바스크립트 내장객체 : location 한테 origin꺼내와서 쓰면 오리진 주소가 나옴
+    //http://localhost/ + images/user.png
+}
