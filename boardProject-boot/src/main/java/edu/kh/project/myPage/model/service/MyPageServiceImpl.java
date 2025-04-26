@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import edu.kh.project.myPage.model.mapper.MyPageMapper;
 
 @Service
 @Transactional(rollbackFor=Exception.class)
+@PropertySource("classpath:/config.properties")
 public class MyPageServiceImpl implements MyPageService{
 
 	@Autowired
@@ -27,6 +30,18 @@ public class MyPageServiceImpl implements MyPageService{
 	//비크립트 암호화 객체의존성 주입 (Security config 참고)
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+	
+	
+	@Value("${my.profile.web-path}")
+	private String profileWebPath; // /myPage/profile
+	
+	
+	@Value("${my.profile.folder-path}")
+	private String prpfileFolderPath; // C:/uploadFiles/profile/
+	
+	
+	
+	
 	
 	@Override
 	public int updateInfo(Member inputMember, String[] memberAddress) {
@@ -231,6 +246,39 @@ public class MyPageServiceImpl implements MyPageService{
 		}
 		
 		return result1+result2;
+	}
+
+	
+	//프로필 이미지 변경 서비스 
+	@Override
+	public int profile(MultipartFile profileImg, Member loginMember) throws Exception {
+		
+		//프로필 이미지 경로
+		String updatePath = null;
+		
+		//변경 명 저장
+		String rename = null;
+		
+		
+		//업로드한 이미지가 있을 경우에 대한 처리 
+		//- 있을 경우 : 경로 조합 ( 클라이언트 접근 경로 + 리네임 파일명)
+		if(!profileImg.isEmpty()) {
+			//1. 파일명 변경 : 원본파일명 rename
+			rename = Utility.fileRename(profileImg.getOriginalFilename());
+			
+			
+			//2. /myPage/profile/변경된 파일명 
+			updatePath = profileWebPath + rename;			
+			
+		}
+		
+		//수정된 프로필 이미지 경로 + 회원 번호를 저장할 DTO객체
+		Member member = Member.builder().memberNo(loginMember.getMemberNo())
+				.profileImg(updatePath).build();
+		
+		int result = mapper.profile(member);
+		
+		return 0;
 	}
 
 }

@@ -361,4 +361,21 @@ public class MypageController {
 			return "redirect:/myPage/fileTest";
 			
 		}
+		
+		
+		@PostMapping("profile")
+		public String profile(@RequestParam("profileImg")MultipartFile profileImg,
+				@SessionAttribute("loginMember") Member loginMember,
+				RedirectAttributes ra)throws Exception {
+			
+			
+			
+			//업로드된 파일 정보를 DB에 insert후 결과 행의 갯수 반환 받을 예정
+			int result = service.profile(profileImg,loginMember);
+			
+			
+			
+			return "redirect:profile";//상대경로 프로필 
+			//마이페이지 프로필에 재요청 : 겟요청 
+		}
 }
