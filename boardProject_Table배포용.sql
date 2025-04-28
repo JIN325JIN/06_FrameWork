@@ -268,6 +268,8 @@ ALTER TABLE "COMMENT" ADD CONSTRAINT "PK_COMMENT" PRIMARY KEY (
 	"COMMENT_NO"
 );
 
+--전부 수행함
+
 -------------------- FK -------------------------
 
 
@@ -347,6 +349,8 @@ REFERENCES "COMMENT" (
 	"COMMENT_NO"
 );
 
+--전부 수행함
+
 ---------------------- CHECK -----------------------
 -- 회원 탈퇴 여부 CHECK 제약 조건 추가
 ALTER TABLE "MEMBER" ADD 
@@ -364,6 +368,9 @@ ALTER TABLE "COMMENT" ADD
 CONSTRAINT "COMMENT_DEL_CHECK"
 CHECK("COMMENT_DEL_FL" IN ('Y', 'N') );
 	
+
+
+--수행함
 	
 /* 게시판 종류(BOARD_TYPE) 추가 */
 CREATE SEQUENCE SEQ_BOARD_CODE NOCACHE;
@@ -374,8 +381,25 @@ INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '자유 게시판');
 
 COMMIT;
 
+SELECT * FROM "BOARD_TYPE";
+
+
+
+SELECT BOARD_CODE "boardCode",BOARD_NAME "boardName"
+FROM "BOARD_TYPE"
+ORDER BY BOARD_CODE;
+
+
+
+
+
+
+
 
 ---------------------------------------------
+SELECT * FROM "MEMBER";
+
+
 /* 게시글 번호 시퀀스 생성 */
 CREATE SEQUENCE SEQ_BOARD_NO NOCACHE; 
 
@@ -389,7 +413,7 @@ BEGIN
 					 SEQ_BOARD_NO.CURRVAL || '번째 게시글 내용 입니다',
 					 DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 					 CEIL( DBMS_RANDOM.VALUE(0,3) ),
-					 1 -- 회원번호
+					 2 -- 회원번호
 		);
 		
 	END LOOP;
@@ -399,6 +423,9 @@ COMMIT;
 
 
 SELECT * FROM "BOARD";
+
+
+--4/28 수행함!
 
 ---------------------------------------------------
 -- 부모 댓글 번호 NULL 허용

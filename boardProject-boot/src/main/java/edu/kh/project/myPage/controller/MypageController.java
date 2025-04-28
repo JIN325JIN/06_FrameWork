@@ -373,7 +373,12 @@ public class MypageController {
 			//업로드된 파일 정보를 DB에 insert후 결과 행의 갯수 반환 받을 예정
 			int result = service.profile(profileImg,loginMember);
 			
-			
+		      String message = null;
+		      
+		      if(result>0) message = "변경 완료";
+		      else message = "변경 실패";
+		      
+		      ra.addFlashAttribute("message",message);
 			
 			return "redirect:profile";//상대경로 프로필 
 			//마이페이지 프로필에 재요청 : 겟요청 
