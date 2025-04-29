@@ -77,19 +77,22 @@
 
                 <!-- 썸네일이 있을 경우 -->
                 <th:block th:if="*{thumbnail}">
+                    <!--*thumbnail은 board에 싣어논 -->
                     <h5>썸네일</h5>
                     <div class="img-box">
                         <div class="boardImg thumbnail">
                             <img th:src="|${thumbnail.imgPath}${thumbnail.imgRename}|">                     
-                            
+                            <!--${thumbnail}은 따로 구해서 넣어둔 request scope의 썸넬-->
                             <a th:href="|${thumbnail.imgPath}${thumbnail.imgRename}|"
                                 th:download="${thumbnail.imgOriginalName}">다운로드</a>         
                         </div>
                     </div>
                 </th:block>
                 
-                <th:block th:if="${#lists.size(board.imageList) > start}">
 
+                <!--일반 이미지 출력 부분-->
+                <th:block th:if="${#lists.size(board.imageList) > start}">
+                                <!--썸네일 있다면 start 1, 없다면 0-->
                     <h5>업로드 이미지</h5>  
                     <th:block th:each="i : ${#numbers.sequence(start, #lists.size(board.imageList) - 1)}">                                
                         <div class="img-box">

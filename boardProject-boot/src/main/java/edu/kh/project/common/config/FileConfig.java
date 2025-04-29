@@ -20,9 +20,7 @@ public class FileConfig implements WebMvcConfigurer{
 	//webMvcConfigurer: Spring MVC  프레임워크에서 제공하는 인터페이스 중 하나로, 
 	//스프링 구성을 커스터마이징하고 확장하기 위한 메서드를 제공함.
 	//주로 웹 어플리케이션의 설정을 조정하거나 추가하는데 사용됨.
-	
-	
-	
+
 	//파일 업로드 임계값 
 	@Value("${spring.servlet.multipart.file-size-threshold}")
 	private long fileSizeThreshold;//52428800
@@ -48,6 +46,24 @@ public class FileConfig implements WebMvcConfigurer{
 
 	@Value("${my.profile.resource-location}")
 	private String profileResourceLocation;//  file:///C:/uploadFiles/profile/
+	
+	
+	
+	//-------------------------------------------------------------------------
+	//게시판 이미지 관련 경로
+	@Value("${my.board.resource-handler}")
+	private String boardResourceHandler;
+	
+	@Value("${my.board.resource-location}")
+	private String boardResourceLocation;
+	
+	
+	
+	
+	
+	
+	
+	
 	//------------------------------------------------------
 	//요청 주소에 따라 
 	//서버 컴퓨터의 어던 경로에 접근 할 지 설정
@@ -70,6 +86,14 @@ public class FileConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler(profileResourceHandler)//  /myPage/profile/**
 		.addResourceLocations(profileResourceLocation);// file:///C:/uploadFiles/profile/
+		
+		
+		
+		registry.addResourceHandler(boardResourceHandler)// /images/board**
+		.addResourceLocations(boardResourceLocation);// file:///C:/uploadFiles/board/
+		
+		
+		
 	}
 	
 	//MultipartResolver 설정
