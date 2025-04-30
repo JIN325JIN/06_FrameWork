@@ -5,6 +5,12 @@ import java.util.Map;
 
 import edu.kh.project.board.model.dto.Board;
 
+/**
+ * 
+ */
+/**
+ * 
+ */
 public interface BoardService  {
 
 	/** 게시판 종류 조회 서비스 ( Interceptor)
@@ -28,6 +34,22 @@ public interface BoardService  {
 	 * @return
 	 */
 	Board selectOne(Map<String, Integer> map);
+
+
+
+	/** 게시글 좋아요 체크/해제
+	 * @param map
+	 * @return
+	 */
+	int boardLike(Map<String, Integer> map);
+
+
+
+	/**조회수 1증가 서비스
+	 * @param boardNo
+	 * @return
+	 */
+	int updateReadCount(int boardNo);
 
 	
 	
