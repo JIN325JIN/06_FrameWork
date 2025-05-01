@@ -7,7 +7,7 @@ if(insertBtn!=null){
 
     //get방식 요청 ( 글작성 할수 잇는 페이지로 이동시키기)
 
-    //editBoard/1/inset
+    //editBoard/1/insert
 
     location.href=`/editBoard/${boardCode}/insert`;
 
