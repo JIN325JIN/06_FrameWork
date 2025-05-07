@@ -179,7 +179,7 @@ public class EditBoardServiceImpl implements EditBoardService {
 				
 				
 				
-				//해당 BoardImg를 uploadList 추가
+				//해당 BoardImg를 uploadList 추가 한다.
 				uploadList.add(img);
 				
 				
