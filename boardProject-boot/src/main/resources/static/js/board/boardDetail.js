@@ -62,3 +62,18 @@ document.querySelector("#boardLike").addEventListener("click",(e)=>{
 
 
 });
+
+//------------게시글 수정 버튼---------
+const updateBtn = document.querySelector("#updateBtn");
+if(updateBtn!=null){ //수정 버튼 존재 시 (로그인 한 회원= 게시글 작성회원)
+  updateBtn.addEventListener("click",()=>{
+
+    //get방식
+    //현재 : /board/1/2004?cp=1
+    //목표 : / editBoard/1/2001/update?cp=1 : 4레벨로 구성되었음
+    location.href=location.pathname.replace('board','editBoard')
+    +"/update"+location.search;
+
+
+  });
+}

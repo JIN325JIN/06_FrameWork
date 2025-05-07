@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.dto.Comment;
 import edu.kh.project.board.model.mapper.CommentMapper;
 
@@ -40,5 +42,7 @@ public class CommentServiceImpl implements CommentService {
 	public int update(Comment comment) {
 		return mapper.update(comment);
 	}
+	
+	
 
 }
