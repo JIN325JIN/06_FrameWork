@@ -70,7 +70,7 @@ INSERT INTO "BOARD_IMG"
 	#{img.imgOrder},
 	#{img.boardNo}
 	FROM DUAL
-</foreach>
+	</foreach>
 </insert>
 
 <!-- 게시글 부분 수정 -->
@@ -114,7 +114,14 @@ VALUES(NEXT_IMG_NO(),
 #{boardNo})
 </insert>
 
-
+<!-- 게시글 삭제 -->
+<update id="boardDelete">
+UPDATE "BOARD" SET
+BOARD_DEL_FL='Y'
+WHERE BOARD_CODE = #{boardCode}
+AND BOARD_NO =#{boardNo}
+AND MEMBER_NO = #{memberNo}
+</update>
 
 
 </mapper>
