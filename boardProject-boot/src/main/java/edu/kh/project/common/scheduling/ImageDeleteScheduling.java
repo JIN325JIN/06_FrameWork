@@ -31,7 +31,8 @@ public class ImageDeleteScheduling {
 	
 	
 	
-	@Scheduled(cron = "0,30 * * * * *")//시계 초 단위가 0,30인 경우 수행
+	//@Scheduled(cron = "0,30 * * * * *")//시계 초 단위가 0,30인 경우 수행
+	@Scheduled(cron = "0 0 0 1 * *")//매달 1일 반복
 	public void scheduling() {
 		log.info("스케줄러 동작!");
 		

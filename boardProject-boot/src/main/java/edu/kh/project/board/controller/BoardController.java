@@ -60,6 +60,10 @@ public class BoardController {
 	public String selectBoardList(@PathVariable("boardCode")int boardCode,
 			@RequestParam(value="cp",required=false,defaultValue="1")int cp,
 			Model model,@RequestParam Map<String,Object>paramMap) {
+		
+		//paramMap = {"query"="짱구", "key" = "tc" }
+		
+		
 		//조회 서비스 호출 후 결과 반환 받기.
 		
 		Map<String,Object> map = null;	

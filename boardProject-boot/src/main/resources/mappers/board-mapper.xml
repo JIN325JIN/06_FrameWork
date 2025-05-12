@@ -254,6 +254,8 @@
 	
 	</select>
    
+   
+   <!--검색 결과 목록 조회-->
    <select id="selectSearchList">
       SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, MEMBER_NICKNAME,
       (SELECT
