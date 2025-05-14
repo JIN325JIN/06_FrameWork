@@ -5,9 +5,7 @@ import java.util.Map;
 
 import edu.kh.project.board.model.dto.Board;
 
-/**
- * 
- */
+
 /**
  * 
  */

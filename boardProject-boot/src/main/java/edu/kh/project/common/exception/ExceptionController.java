@@ -15,12 +15,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  * 3. 별도 클래스를 만들어 프로젝트 단위로 모아서 처리(@ControllerAdvice 어노테이션을 지닌 클래스를 작성
  * 해당 클래스 내부에서 @ExceptionHandler 어노테이션을 지닌 메서드를 작성)
  * 
- * 
- * 
- * 
  * */
-
-
 
 
 @ControllerAdvice //전역적으로 예외처리를 활성화 해주는 어노테이션
@@ -32,7 +27,6 @@ public class ExceptionController {
 	//SQLException.class - SQL 관련 예외만 처리
 	//IOException.class - 입출력 관련 예외만 처리
 	//NoResourceFoundException.class - 자원을 찾을수 없다 : 요청한 주소를 찾을 수 없을 때 예외처리(404) 
-	
 	
 	
 	@ExceptionHandler(NoResourceFoundException.class)
@@ -54,8 +48,6 @@ public class ExceptionController {
 		
 		return "error/500";
 	}
-	
-	
 }
 
 
