@@ -28,19 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardTypeInterceptor implements HandlerInterceptor {
 
 	
-	
-
 	@Autowired
 	private BoardService service;
 	
-	
-	
-	
 	//전처리 : Controller로 요청이 들어오기 전 실행되는 메서드
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		//boardTypeList를 DB에서 얻어오기
 		
@@ -66,7 +59,9 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 			//조회 결과를 application scope 객체에 추가
 			
 			application.setAttribute("boardTypeList", boardTypeList);
-		
+			//자동으로 가져오는건 application scope이기 때문에, 꼭 명시해주어야함!
+			
+			
 			log.debug("boardTypeList : "+boardTypeList);
 		}
 		
