@@ -36,18 +36,18 @@ COMMENT ON COLUMN "MEMBER"."AUTHORITY" IS '권한(1:일반, 2:관리자)';
 CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
 
 
--- 샘플 회원 데이터 삽입
+-- 샘플 회원 데이터 삽입(비번 : pass01!)
 INSERT INTO "MEMBER"
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 
-			 'user01@kh.or.kr',
-			 'pass01!',
-			 '유저일',
+			 'admin01@kh.or.kr',
+			 '$2a$10$SC0KYLzAdtkZT12h5wTWT.csuiG.boiRC4ct6Mioe5puIo4W7GZmW',
+			 '관리일',
 			 '01012341234',
 			 NULL,
 			 NULL,
 			 DEFAULT,
 			 DEFAULT,
-			 DEFAULT
+			 2
 );
 
 COMMIT;
