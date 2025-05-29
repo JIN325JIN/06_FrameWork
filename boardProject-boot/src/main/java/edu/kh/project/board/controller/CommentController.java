@@ -37,7 +37,6 @@ public class CommentController {
 	@Autowired
 	private CommentService service;
 	
-	
 	/** 댓글 목록 조회
 	 * @param boardNo
 	 * @return
@@ -50,7 +49,6 @@ public class CommentController {
 		return service.select(boardNo);
 	}
 	
-	
 	/** 댓글/답글 등록
 	 * @return
 	 */
@@ -58,7 +56,6 @@ public class CommentController {
 	public int insert(@RequestBody Comment comment) {
 		return service.insert(comment);
 	}
-	
 	
 	/** 댓글삭제
 	 * @param commentNo
