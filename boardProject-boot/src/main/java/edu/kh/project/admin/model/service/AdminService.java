@@ -13,10 +13,7 @@ public interface AdminService {
 	 */
 	Member login(Member inputMember);
 
-	/** 신규 가입 회원
-	 * @return
-	 */
-	List<Member> recentSignUp(); 
+	
 	
 	/** 최대 조회수 게시글 조회
 	 * @return
@@ -32,6 +29,49 @@ public interface AdminService {
 	 * @return
 	 */
 	Board maxCommentCount();
+
+	
+//	------5/29 숙제-------
+	
+	/** 신규 가입 회원
+	 * @return
+	 */
+	List<Member> recentSignUp(); 
+	
+	
+//	------------5/30 삭제 목록 조회---------
+	
+	/** 탈퇴 회원 리스트 조회
+	 * @return
+	 */
+	List<Member> selectWithdrawnMemberList();
+
+
+	/** 삭제된 게시글 목록 조회
+	 * @return
+	 */
+	List<Board> selectDeleteBoardList();
+
+
+//	------------5/30 복구---------
+	/** 탈퇴 회원 복구
+	 * @param memberNo
+	 * @return
+	 */
+	int restoreMember(int memberNo);
+
+	/** 삭제된 게시글 복구
+	 * @param boardNo
+	 * @return
+	 */
+	int restoreBoard(int boardNo);
+
+
+
+
+
+
+
 
 	
 } 

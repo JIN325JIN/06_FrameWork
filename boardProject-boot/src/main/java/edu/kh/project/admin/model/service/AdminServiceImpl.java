@@ -38,14 +38,7 @@ public class AdminServiceImpl implements AdminService{
 		
 		return loginMember;
 	}
-	//-------------------------------------
-	// 신규 가입 회원
-	@Override
-	public List<Member> recentSignUp() {
-		return mapper.recentSignUp();
-	}
-	
-	//-------------------------------------------------
+	// 최대 조회수, 최대 좋아요수, 최대 댓글수 ----------------
 	@Override
 	public Board maxReadCount() {
 		return mapper.maxReadCount();
@@ -61,8 +54,37 @@ public class AdminServiceImpl implements AdminService{
 		return mapper.maxCommentCount();
 	}
 
-
+	// 신규 가입회원 (숙제)-------------------------------------
+		
+	@Override
+	public List<Member> recentSignUp() {
+		return mapper.recentSignUp();
+	}
+		
+	//-------------------------------------------------
 	
-
+	// 탈퇴 회원 조회
+	@Override
+	public List<Member> selectWithdrawnMemberList() {
+		return mapper.selectWithdrawnMemberList();
+	}
+		
+	// 삭제된 게시글 조회
+	@Override
+	public List<Board> selectDeleteBoardList() {
+		return mapper.selectDeleteBoardList();
+	}
+	
+	//탈퇴 회원 복구
+	@Override
+	public int restoreMember(int memberNo) {
+		return mapper.restoreMember(memberNo);
+	}
+	
+	// 삭제된 게시글 복구
+	@Override
+	public int restoreBoard(int boardNo) {
+		return mapper.restoreBoard(boardNo);
+	}
 	
 }
