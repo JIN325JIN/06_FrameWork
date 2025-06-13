@@ -35,22 +35,15 @@ public class TodoController {
 	
 	
 	@GetMapping("selectAll")
-	public ResponseEntity <Object> selectAll(@RequestBody Todo todo){
-
-		try {
-			        Map<String, Object> result = service.selectAll();
-
-			        if(result != null) {
-			            return ResponseEntity.ok("할 일 조회 성공!");
-			        }
-			        else {
-			            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("조회 실패");
-			        }
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("TODO 조회 중 문제발생 : " + e.getMessage());
-		}
+	public ResponseEntity<Object> selectAll() {
+	    try {
+	        Map<String, Object> result = service.selectAll(); // 할 일 목록 가져오기
+	        return ResponseEntity.ok(result); // 프론트에 JSON 응답
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	            .body("TODO 조회 중 문제 발생: " + e.getMessage());
+	    }
 	}
-	
 	
 	
 	/** todo 추가하기
@@ -150,4 +143,6 @@ public class TodoController {
 			}
 		
 	}
+	
+	// react는 보이는데 서버랑 연결이 안되는듯
 }
