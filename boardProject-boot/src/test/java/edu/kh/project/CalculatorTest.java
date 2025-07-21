@@ -29,12 +29,13 @@ import edu.kh.project.test.Calculator;
 @TestMethodOrder(OrderAnnotation.class)
 public class CalculatorTest {
 
+	//인스턴스화 먼저 되어야
 	private static Calculator calculator ;
 	
 	
 	// @BeforeAll , AfterAll 매서드는 무조건 static 메서드에서 사용!!!!!!!!
 	@BeforeAll
-	static void initAll() {
+	public static void initAll() {
 		// 모든 테스트 실행 전에 1번만 실행 
 		calculator = new Calculator();
 		System.out.println("@BeforeAll - 테스트 시작 전 초기화 ");
